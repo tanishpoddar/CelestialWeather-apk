@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark Theme Colors -->
+    <color name="backgroundColor">#121212</color>
+    <color name="cardBackground">#242424</color>
+    <color name="textColorPrimary">#FFFFFF</color>
+    <color name="textColorSecondary">#B3FFFFFF</color>
+    <color name="searchBarBackground">#424242</color>
+    <color name="searchBarText">#FFFFFF</color>
+    <color name="dividerColor">#424242</color>
+    <color name="white">#FFFFFF</color>
+</resources>
+
