@@ -296,7 +296,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupUI(weatherResponse: WeatherResponse) {
         hideProgressDialog()
         mainContainer.visibility = View.VISIBLE
-        errorText.visibility = View.GONE
+        findViewById<View>(R.id.errorCard).visibility = View.GONE
 
         // Get weather description and icon
         val weatherDescription = weatherResponse.weather.firstOrNull()?.description ?: "Unknown"

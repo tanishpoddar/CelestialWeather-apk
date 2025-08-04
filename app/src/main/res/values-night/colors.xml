@@ -2,10 +2,10 @@
 <resources>
     <!-- Dark Theme Colors -->
     <color name="backgroundColor">#121212</color>
-    <color name="cardBackground">#242424</color>
+    <color name="cardBackground">#1E1E1E</color>
     <color name="textColorPrimary">#FFFFFF</color>
-    <color name="textColorSecondary">#B3FFFFFF</color>
-    <color name="searchBarBackground">#424242</color>
+    <color name="textColorSecondary">#E0E0E0</color>
+    <color name="searchBarBackground">#2D2D2D</color>
     <color name="searchBarText">#FFFFFF</color>
     <color name="dividerColor">#424242</color>
     <color name="white">#FFFFFF</color>
