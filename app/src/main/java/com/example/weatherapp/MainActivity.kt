@@ -2,6 +2,7 @@ package com.example.weatherapp
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -10,6 +11,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -22,6 +24,7 @@ import com.example.weatherapp.adapters.HourlyForecastAdapter
 import com.example.weatherapp.models.HourlyForecastModel
 import com.example.weatherapp.models.LegacyWeatherResponse as WeatherResponse
 import com.example.weatherapp.utils.Constants
+import com.example.weatherapp.utils.WeatherIconMapper
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationResult
@@ -34,6 +37,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
     private val requestLocationCode = 123123
@@ -66,6 +70,17 @@ class MainActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Please enter a city name", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        // Setup footer click handlers
+        findViewById<TextView>(R.id.tanishLink).setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://tanish-poddar.is-a.dev/"))
+            startActivity(intent)
+        }
+
+        findViewById<ImageView>(R.id.githubIcon).setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/tanishpoddar/CelestialWeather-apk"))
+            startActivity(intent)
         }
 
         if (!isLocationEnabled()) {
@@ -283,9 +298,18 @@ class MainActivity : AppCompatActivity() {
         mainContainer.visibility = View.VISIBLE
         errorText.visibility = View.GONE
 
+        // Get weather description and icon
+        val weatherDescription = weatherResponse.weather.firstOrNull()?.description ?: "Unknown"
+        val weatherIcon = weatherResponse.weather.firstOrNull()?.icon ?: "01d"
+
+        // Set weather background image based on weather condition
+        val weatherBackgroundImage = findViewById<android.widget.ImageView>(R.id.weatherBackgroundImage)
+        val weatherImageResource = WeatherIconMapper.getWeatherImageResource(weatherDescription, weatherIcon)
+        weatherBackgroundImage.setImageResource(weatherImageResource)
+
         // Weather status
-        findViewById<TextView>(R.id.tv_main).text = weatherResponse.weather.firstOrNull()?.description ?: "Unknown"
-        findViewById<TextView>(R.id.tv_main_description).text = weatherResponse.weather.firstOrNull()?.description ?: "Unknown"
+        findViewById<TextView>(R.id.tv_main).text = weatherDescription.replaceFirstChar { it.uppercase() }
+        findViewById<TextView>(R.id.tv_main_description).text = weatherDescription.replaceFirstChar { it.uppercase() }
 
         // Location details
         findViewById<TextView>(R.id.tv_location).text = getString(R.string.format_location, weatherResponse.name, weatherResponse.sys?.country ?: "")

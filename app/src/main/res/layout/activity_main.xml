@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_bg">
+    android:background="@drawable/modern_background">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -22,8 +22,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="4dp">
+                app:cardCornerRadius="16dp"
+                app:cardElevation="8dp"
+                app:cardBackgroundColor="@android:color/white">
 
                 <LinearLayout
                     android:id="@+id/searchContainer"
@@ -66,8 +67,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="4dp">
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="8dp"
+                    app:cardBackgroundColor="@android:color/white">
 
                     <LinearLayout
                         android:id="@+id/addressContainer"
@@ -96,56 +98,85 @@
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <!-- Current Weather Card -->
+                <!-- Current Weather Card with Weather Image Background -->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/weatherCard"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="200dp"
                     android:layout_below="@id/locationCard"
                     android:layout_marginBottom="16dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="4dp">
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="8dp"
+                    app:cardBackgroundColor="@android:color/transparent">
 
-                    <LinearLayout
-                        android:id="@+id/weatherContainer"
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:padding="24dp">
+                        android:layout_height="match_parent">
 
+                        <!-- Weather Image Background with Overlay -->
                         <ImageView
-                            android:id="@+id/weatherIcon"
-                            android:layout_width="64dp"
-                            android:layout_height="64dp"
-                            android:layout_marginBottom="16dp"
-                            android:contentDescription="Weather Icon"/>
+                            android:id="@+id/weatherBackgroundImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/clear"
+                            android:contentDescription="Weather Background"/>
 
-                        <TextView
-                            android:id="@+id/tv_temp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/textColorPrimary"
-                            android:textSize="48sp"
-                            tools:text="24°C"/>
+                        <!-- Semi-transparent overlay -->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#80000000"/>
 
-                        <TextView
-                            android:id="@+id/tv_main"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/textColorPrimary"
-                            android:textSize="24sp"
-                            android:layout_marginTop="8dp"
-                            tools:text="Clear"/>
+                        <!-- Weather Content -->
+                        <LinearLayout
+                            android:id="@+id/weatherContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="24dp">
 
-                        <TextView
-                            android:id="@+id/tv_main_description"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/textColorSecondary"
-                            android:textSize="16sp"
-                            tools:text="Clear sky"/>
-                    </LinearLayout>
+                            <TextView
+                                android:id="@+id/tv_temp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@android:color/white"
+                                android:textSize="56sp"
+                                android:textStyle="bold"
+                                android:shadowColor="#40000000"
+                                android:shadowDx="2"
+                                android:shadowDy="2"
+                                android:shadowRadius="4"
+                                tools:text="24°C"/>
+
+                            <TextView
+                                android:id="@+id/tv_main"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@android:color/white"
+                                android:textSize="28sp"
+                                android:textStyle="bold"
+                                android:layout_marginTop="8dp"
+                                android:shadowColor="#40000000"
+                                android:shadowDx="1"
+                                android:shadowDy="1"
+                                android:shadowRadius="2"
+                                tools:text="Clear"/>
+
+                            <TextView
+                                android:id="@+id/tv_main_description"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@android:color/white"
+                                android:textSize="18sp"
+                                android:shadowColor="#40000000"
+                                android:shadowDx="1"
+                                android:shadowDy="1"
+                                android:shadowRadius="2"
+                                tools:text="Clear sky"/>
+                        </LinearLayout>
+                    </FrameLayout>
                 </com.google.android.material.card.MaterialCardView>
 
                 <!-- Weather Details Card -->
@@ -155,76 +186,105 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/weatherCard"
                     android:layout_marginBottom="16dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="4dp">
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="8dp"
+                    app:cardBackgroundColor="@android:color/white">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="16dp">
+                                         <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:orientation="vertical"
+                         android:padding="24dp"
+                         android:gravity="center">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:baselineAligned="false">
+                         <!-- Min/Max Temperature - Full Width -->
+                         <TextView
+                             android:id="@+id/tv_min_max"
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:textColor="@color/textColorPrimary"
+                             android:textSize="24sp"
+                             android:textStyle="bold"
+                             android:gravity="center"
+                             android:layout_marginBottom="16dp"
+                             tools:text="Min: 20°C Max: 25°C"/>
 
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:gravity="center">
+                         <!-- Additional Weather Details in Grid -->
+                         <LinearLayout
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:orientation="horizontal"
+                             android:baselineAligned="false">
 
-                                <TextView
-                                    android:id="@+id/tv_min_max"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/textColorPrimary"
-                                    tools:text="Min: 20°C Max: 25°C"/>
+                             <LinearLayout
+                                 android:layout_width="0dp"
+                                 android:layout_height="wrap_content"
+                                 android:layout_weight="1"
+                                 android:orientation="vertical"
+                                 android:gravity="center">
 
-                                <TextView
-                                    android:id="@+id/tv_humidity"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="8dp"
-                                    android:textColor="@color/textColorPrimary"
-                                    tools:text="Humidity: 70%"/>
-                            </LinearLayout>
+                                 <TextView
+                                     android:id="@+id/tv_humidity"
+                                     android:layout_width="wrap_content"
+                                     android:layout_height="wrap_content"
+                                     android:textColor="@color/textColorPrimary"
+                                     android:textSize="16sp"
+                                     android:gravity="center"
+                                     tools:text="Humidity: 70%"/>
+                             </LinearLayout>
 
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:gravity="center">
+                             <LinearLayout
+                                 android:layout_width="0dp"
+                                 android:layout_height="wrap_content"
+                                 android:layout_weight="1"
+                                 android:orientation="vertical"
+                                 android:gravity="center">
 
-                                <TextView
-                                    android:id="@+id/tv_wind"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/textColorPrimary"
-                                    tools:text="Wind: 5 m/s"/>
+                                 <TextView
+                                     android:id="@+id/tv_wind"
+                                     android:layout_width="wrap_content"
+                                     android:layout_height="wrap_content"
+                                     android:textColor="@color/textColorPrimary"
+                                     android:textSize="16sp"
+                                     android:gravity="center"
+                                     tools:text="Wind: 5 m/s"/>
+                             </LinearLayout>
 
-                                <TextView
-                                    android:id="@+id/tv_sunrise"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="8dp"
-                                    android:textColor="@color/textColorPrimary"
-                                    tools:text="Sunrise: 6:00 AM"/>
+                             <LinearLayout
+                                 android:layout_width="0dp"
+                                 android:layout_height="wrap_content"
+                                 android:layout_weight="1"
+                                 android:orientation="vertical"
+                                 android:gravity="center">
 
-                                <TextView
-                                    android:id="@+id/tv_sunset"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="8dp"
-                                    android:textColor="@color/textColorPrimary"
-                                    tools:text="Sunset: 8:00 PM"/>
-                            </LinearLayout>
-                        </LinearLayout>
-                    </LinearLayout>
+                                 <TextView
+                                     android:id="@+id/tv_sunrise"
+                                     android:layout_width="wrap_content"
+                                     android:layout_height="wrap_content"
+                                     android:textColor="@color/textColorPrimary"
+                                     android:textSize="16sp"
+                                     android:gravity="center"
+                                     tools:text="Sunrise: 6:00 AM"/>
+                             </LinearLayout>
+
+                             <LinearLayout
+                                 android:layout_width="0dp"
+                                 android:layout_height="wrap_content"
+                                 android:layout_weight="1"
+                                 android:orientation="vertical"
+                                 android:gravity="center">
+
+                                 <TextView
+                                     android:id="@+id/tv_sunset"
+                                     android:layout_width="wrap_content"
+                                     android:layout_height="wrap_content"
+                                     android:textColor="@color/textColorPrimary"
+                                     android:textSize="16sp"
+                                     android:gravity="center"
+                                     tools:text="Sunset: 8:00 PM"/>
+                             </LinearLayout>
+                         </LinearLayout>
+                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
                 <!-- Hourly Forecast Section -->
@@ -234,8 +294,9 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/detailsCard"
                     android:layout_marginBottom="16dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="4dp">
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="8dp"
+                    app:cardBackgroundColor="@android:color/white">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -260,6 +321,103 @@
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
+
+                <!-- Footer - Now part of scrollable content -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/footerCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/hourlyForecastCard"
+                    android:layout_marginTop="32dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="8dp"
+                    app:cardBackgroundColor="#1A000000">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Made with "
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:shadowColor="#40000000"
+                            android:shadowDx="1"
+                            android:shadowDy="1"
+                            android:shadowRadius="2"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="❤️"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:shadowColor="#40000000"
+                            android:shadowDx="1"
+                            android:shadowDy="1"
+                            android:shadowRadius="2"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" by "
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:shadowColor="#40000000"
+                            android:shadowDx="1"
+                            android:shadowDy="1"
+                            android:shadowRadius="2"/>
+
+                        <TextView
+                            android:id="@+id/tanishLink"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tanish"
+                            android:textColor="#4FC3F7"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:padding="4dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:shadowColor="#40000000"
+                            android:shadowDx="1"
+                            android:shadowDy="1"
+                            android:shadowRadius="2"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" | "
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:shadowColor="#40000000"
+                            android:shadowDx="1"
+                            android:shadowDy="1"
+                            android:shadowRadius="2"/>
+
+                        <ImageView
+                            android:id="@+id/githubIcon"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_github"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:padding="4dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:contentDescription="GitHub"
+                            android:tint="@android:color/white"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
             </RelativeLayout>
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
@@ -280,8 +438,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="16dp"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="4dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:cardBackgroundColor="@android:color/white"
         android:visibility="gone">
 
         <LinearLayout
@@ -318,23 +477,4 @@
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
         
-    <!-- Footer with attribution and background -->
-    <LinearLayout
-        android:id="@+id/footerLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="@drawable/gradient_bg"
-        android:gravity="center"
-        android:padding="16dp">
-        
-        <TextView
-            android:id="@+id/footerText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Made with ❤️ by Tanish"
-            android:textColor="@color/textColorPrimary"
-            android:textSize="14sp"/>
-    </LinearLayout>
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
